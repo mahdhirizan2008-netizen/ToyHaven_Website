@@ -1,249 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="Toy Haven responsive toy store front-end" name="description"/>
-  <meta content="#242424" name="theme-color"/>
-  <link href="manifest.json" rel="manifest"/>
-  <link href="favicon/favicon.png" rel="icon"/>
-  <link href="css/style.css" rel="stylesheet"/>
-  <title>
-   Products | Toy Haven
-  </title>
- </head>
- <body data-page="products">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Browse the Toy Haven collection of toys, diecast cars, figurines and board games.">
+    <meta name="theme-color" content="#242424">
 
-  <div class="ambient-effects" aria-hidden="true">
-   <span class="drop drop-1"></span>
-   <span class="drop drop-2"></span>
-   <span class="drop drop-3"></span>
-   <span class="drop drop-4"></span>
-   <span class="drop drop-5"></span>
-   <span class="drop drop-6"></span>
-   <span class="drop drop-7"></span>
-   <span class="drop drop-8"></span>
-   <span class="paint paint-1"></span>
-   <span class="paint paint-2"></span>
-   <span class="paint paint-3"></span>
-   <span class="splash splash-1"></span>
-   <span class="splash splash-2"></span>
-  </div>
-  <a class="skip-link" href="#main">
-   Skip to content
-  </a>
-  <header class="site-header">
-   <div class="announcement">
-    <p>
-     ✨ New toy arrivals &bull; Friendly shopping &bull; Local browser demo
-    </p>
-   </div>
-   <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-     <img alt="Toy Haven TH logo" src="images/logo-user.png"/>
-     <span class="brand-name">TOY HAVEN</span>
-    </a>
-    <button aria-controls="mainNav" aria-expanded="false" class="menu-btn" id="menuBtn">
-     ☰
-    </button>
-    <nav class="main-nav" id="mainNav">
-     <a href="index.html">
-      Home
-     </a>
-     <a href="products.html">
-      Shop
-     </a>
-     <a href="wishlist.html">
-      Wishlist
-     </a>
-     <a href="forum.html">
-      Toy Talk
-     </a>
-     <a href="feedback.html">
-      Support
-     </a>
-     <a href="login.html">
-      Login
-     </a>
-    </nav>
-    <div class="nav-actions">
-     <label class="sr-only" for="currency">
-      Currency
-     </label>
-     <select class="currency" id="currency">
-      <option>
-       USD
-      </option>
-      <option>
-       LKR
-      </option>
-      <option>
-       GBP
-      </option>
-      <option>
-       INR
-      </option>
-      <option>
-       AUD
-      </option>
-      <option>
-       EUR
-      </option>
-      <option>
-       CAD
-      </option>
-      <option>
-       AED
-      </option>
-     </select>
-     <a class="cart-pill" href="cart.html">
-      🛒
-      <span id="cartCount">
-       0
-      </span>
-     </a>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Products | Toy Haven</title>
+</head>
+
+<body data-page="products">
+
+    <div class="ambient-effects" aria-hidden="true">
+        <span class="drop drop-1"></span>
+        <span class="drop drop-2"></span>
+        <span class="drop drop-3"></span>
+        <span class="drop drop-4"></span>
+        <span class="drop drop-5"></span>
+        <span class="drop drop-6"></span>
+        <span class="drop drop-7"></span>
+        <span class="drop drop-8"></span>
+        <span class="paint paint-1"></span>
+        <span class="paint paint-2"></span>
+        <span class="paint paint-3"></span>
+        <span class="splash splash-1"></span>
+        <span class="splash splash-2"></span>
     </div>
-   </div>
-  </header>
-  <main class="page-enter" id="main">
-   <section class="page-hero">
-    <div class="container">
-     <p class="eyebrow">
-      THE TOY COLLECTION
-     </p>
-     <h1>
-      Find your next favourite.
-     </h1>
-     <p>
-      Search, filter and click a toy to go inside its collection.
-     </p>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+
+        <div class="announcement">
+            <p>
+                ✨ New toy arrivals &bull; Friendly shopping &bull; Local browser demo
+            </p>
+        </div>
+
+        <div class="container nav-wrap">
+
+            <a class="brand" href="index.html">
+                <img src="favicon.png" alt="Toy Haven TH logo">
+                <span class="brand-name">TOY HAVEN</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-controls="mainNav"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="forum.html">Toy Talk</a>
+                <a href="feedback.html">Support</a>
+                <a href="login.html">Login</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <label class="sr-only" for="currency">
+                    Currency
+                </label>
+
+                <select class="currency" id="currency">
+                    <option value="USD">USD</option>
+                    <option value="LKR">LKR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="INR">INR</option>
+                    <option value="AUD">AUD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="CAD">CAD</option>
+                    <option value="AED">AED</option>
+                </select>
+
+                <a class="cart-pill" href="cart.html" aria-label="Shopping cart">
+                    🛒
+                    <span id="cartCount">0</span>
+                </a>
+
+            </div>
+
+        </div>
+    </header>
+
+    <main class="page-enter" id="main">
+
+        <section class="page-hero">
+            <div class="container">
+
+                <p class="eyebrow">
+                    THE TOY COLLECTION
+                </p>
+
+                <h1>
+                    Find your next favourite.
+                </h1>
+
+                <p>
+                    Search, filter and click a toy to go inside its collection.
+                </p>
+
+            </div>
+        </section>
+
+        <section class="section container">
+
+            <div class="shop-toolbar">
+
+                <label>
+                    Search
+                    <input
+                        id="productSearch"
+                        type="search"
+                        placeholder="Try teddy, car, robot or bricks"
+                        autocomplete="off">
+                </label>
+
+                <label>
+                    Category
+                    <select id="categoryFilter">
+                        <option value="All">All</option>
+                        <option value="Toys">Toys</option>
+                        <option value="Diecast Cars">Diecast Cars</option>
+                        <option value="Figurines">Figurines</option>
+                        <option value="Board Games">Board Games</option>
+                    </select>
+                </label>
+
+                <label>
+                    Sort
+                    <select id="sortProducts">
+                        <option value="recommended">Recommended</option>
+                        <option value="low">Price: low to high</option>
+                        <option value="high">Price: high to low</option>
+                        <option value="rating">Top rated</option>
+                    </select>
+                </label>
+
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+
+            <p class="empty hidden" id="noResults">
+                We could not find that toy, but there are plenty more treasures to explore.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+            <div>
+                <img
+                    src="favicon.png"
+                    alt="Toy Haven logo"
+                    class="footer-logo">
+
+                <p>
+                    A bright little corner for toys, collectibles and everyday wonder.
+                </p>
+            </div>
+
+            <div>
+                <h3>Explore</h3>
+
+                <a href="products.html">Shop Toys</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="forum.html">Toy Talk</a>
+            </div>
+
+            <div>
+                <h3>Support</h3>
+
+                <a href="feedback.html">Feedback</a>
+                <a href="cart.html">Cart</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div>
+                <h3>Stay in touch</h3>
+
+                <form id="newsletterForm">
+
+                    <label for="newsletterEmail">
+                        Email
+                    </label>
+
+                    <div class="newsletter-row">
+
+                        <input
+                            id="newsletterEmail"
+                            type="email"
+                            placeholder="you@example.com"
+                            required>
+
+                        <button
+                            class="btn btn-dark"
+                            type="submit">
+                            Subscribe
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <span>
+                    &copy; 2026 Toy Haven
+                </span>
+
+                <span>
+                    Front-end academic project
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite">
     </div>
-   </section>
-   <section class="section container">
-    <div class="shop-toolbar">
-     <label>
-      Search
-      <input id="productSearch" placeholder="Try teddy, car, robot or bricks" type="search"/>
-     </label>
-     <label>
-      Category
-      <select id="categoryFilter">
-       <option>
-        All
-       </option>
-       <option>
-        Toys
-       </option>
-       <option>
-        Diecast Cars
-       </option>
-       <option>
-        Figurines
-       </option>
-       <option>
-        Board Games
-       </option>
-      </select>
-     </label>
-     <label>
-      Sort
-      <select id="sortProducts">
-       <option value="recommended">
-        Recommended
-       </option>
-       <option value="low">
-        Price: low to high
-       </option>
-       <option value="high">
-        Price: high to low
-       </option>
-       <option value="rating">
-        Top rated
-       </option>
-      </select>
-     </label>
-    </div>
-    <div class="product-grid" id="productGrid">
-    </div>
-    <p class="empty hidden" id="noResults">
-     We could not find that toy, but there are plenty more treasures to explore.
-    </p>
-   </section>
-  </main>
-  <footer class="site-footer">
-   <div class="container footer-grid">
-    <div>
-     <img alt="Toy Haven logo" class="footer-logo" src="images/logo-user.png"/>
-     <p>
-      A bright little corner for toys, collectibles and everyday wonder.
-     </p>
-    </div>
-    <div>
-     <h3>
-      Explore
-     </h3>
-     <a href="products.html">
-      Shop Toys
-     </a>
-     <a href="wishlist.html">
-      Wishlist
-     </a>
-     <a href="forum.html">
-      Toy Talk
-     </a>
-    </div>
-    <div>
-     <h3>
-      Support
-     </h3>
-     <a href="feedback.html">
-      Feedback
-     </a>
-     <a href="cart.html">
-      Cart
-     </a>
-     <a href="login.html">
-      Login
-     </a>
-    </div>
-    <div>
-     <h3>
-      Stay in touch
-     </h3>
-     <form id="newsletterForm">
-      <label for="newsletterEmail">
-       Email
-      </label>
-      <div class="newsletter-row">
-       <input id="newsletterEmail" placeholder="you@example.com" required="" type="email"/>
-       <button class="btn btn-dark">
-        Subscribe
-       </button>
-      </div>
-     </form>
-    </div>
-   </div>
-   <div class="footer-bottom">
-    <div class="container">
-     <span>
-      &copy; 2026 Toy Haven
-     </span>
-     <span>
-      Front-end academic project
-     </span>
-    </div>
-   </div>
-  </footer>
-  <div aria-live="polite" class="toast" id="toast" role="status">
-  </div>
-  <script src="js/products.js">
-  </script>
-  <script src="js/main.js">
-  </script>
-  <script src="js/shop.js">
-  </script>
-   <script src="js/product-modal.js"></script>
-  <script src="js/page-animations.js"></script>
- </body>
+
+    <!-- JavaScript files are in the repository root -->
+    <script src="products.js"></script>
+    <script src="main.js"></script>
+    <script src="shop.js"></script>
+    <script src="product-modal.js"></script>
+    <script src="page-animations.js"></script>
+
+</body>
 </html>
-
