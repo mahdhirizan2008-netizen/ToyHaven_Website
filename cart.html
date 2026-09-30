@@ -1,213 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="Toy Haven responsive toy store front-end" name="description"/>
-  <meta content="#242424" name="theme-color"/>
-  <link href="manifest.json" rel="manifest"/>
-  <link href="favicon/favicon.png" rel="icon"/>
-  <link href="css/style.css" rel="stylesheet"/>
-  <title>
-   Cart | Toy Haven
-  </title>
- </head>
- <body data-page="cart">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Toy Haven responsive toy store front-end">
+    <meta name="theme-color" content="#242424">
 
-  <div class="ambient-effects" aria-hidden="true">
-   <span class="drop drop-1"></span>
-   <span class="drop drop-2"></span>
-   <span class="drop drop-3"></span>
-   <span class="drop drop-4"></span>
-   <span class="drop drop-5"></span>
-   <span class="drop drop-6"></span>
-   <span class="drop drop-7"></span>
-   <span class="drop drop-8"></span>
-   <span class="paint paint-1"></span>
-   <span class="paint paint-2"></span>
-   <span class="paint paint-3"></span>
-   <span class="splash splash-1"></span>
-   <span class="splash splash-2"></span>
-  </div>
-  <a class="skip-link" href="#main">
-   Skip to content
-  </a>
-  <header class="site-header">
-   <div class="announcement">
-    <p>
-     ✨ New toy arrivals &bull; Friendly shopping &bull; Local browser demo
-    </p>
-   </div>
-   <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-     <img alt="Toy Haven TH logo" src="images/logo-user.png"/>
-     <span class="brand-name">TOY HAVEN</span>
+    <link href="manifest.json" rel="manifest">
+    <link href="favicon.png" rel="icon">
+    <link href="style.css" rel="stylesheet">
+
+    <title>Cart | Toy Haven</title>
+</head>
+
+<body data-page="cart">
+
+    <div class="ambient-effects" aria-hidden="true">
+        <span class="drop drop-1"></span>
+        <span class="drop drop-2"></span>
+        <span class="drop drop-3"></span>
+        <span class="drop drop-4"></span>
+        <span class="drop drop-5"></span>
+        <span class="drop drop-6"></span>
+        <span class="drop drop-7"></span>
+        <span class="drop drop-8"></span>
+        <span class="paint paint-1"></span>
+        <span class="paint paint-2"></span>
+        <span class="paint paint-3"></span>
+        <span class="splash splash-1"></span>
+        <span class="splash splash-2"></span>
+    </div>
+
+    <a class="skip-link" href="#main">
+        Skip to content
     </a>
-    <button aria-controls="mainNav" aria-expanded="false" class="menu-btn" id="menuBtn">
-     ☰
-    </button>
-    <nav class="main-nav" id="mainNav">
-     <a href="index.html">
-      Home
-     </a>
-     <a href="products.html">
-      Shop
-     </a>
-     <a href="wishlist.html">
-      Wishlist
-     </a>
-     <a href="forum.html">
-      Toy Talk
-     </a>
-     <a href="feedback.html">
-      Support
-     </a>
-     <a href="login.html">
-      Login
-     </a>
-    </nav>
-    <div class="nav-actions">
-     <label class="sr-only" for="currency">
-      Currency
-     </label>
-     <select class="currency" id="currency">
-      <option>
-       USD
-      </option>
-      <option>
-       LKR
-      </option>
-      <option>
-       GBP
-      </option>
-      <option>
-       INR
-      </option>
-      <option>
-       AUD
-      </option>
-      <option>
-       EUR
-      </option>
-      <option>
-       CAD
-      </option>
-      <option>
-       AED
-      </option>
-     </select>
-     <a class="cart-pill" href="cart.html">
-      🛒
-      <span id="cartCount">
-       0
-      </span>
-     </a>
-    </div>
-   </div>
-  </header>
-  <main class="page-enter" id="main">
-   <section class="page-hero">
-    <div class="container">
-     <p class="eyebrow">
-      YOUR CART
-     </p>
-     <h1>
-      A cart full of happy possibilities.
-     </h1>
-    </div>
-   </section>
-   <section class="section container cart-layout">
-    <div id="cartItems">
-    </div>
-    <aside class="summary-card">
-     <h2>
-      Order summary
-     </h2>
-     <div id="cartSummary">
-     </div>
-     <a class="btn btn-primary full" href="checkout.html">
-      Proceed to checkout
-     </a>
-     <button class="btn btn-soft full" id="clearCart">
-      Clear cart
-     </button>
-    </aside>
-   </section>
-  </main>
-  <footer class="site-footer">
-   <div class="container footer-grid">
-    <div>
-     <img alt="Toy Haven logo" class="footer-logo" src="images/logo-user.png"/>
-     <p>
-      A bright little corner for toys, collectibles and everyday wonder.
-     </p>
-    </div>
-    <div>
-     <h3>
-      Explore
-     </h3>
-     <a href="products.html">
-      Shop Toys
-     </a>
-     <a href="wishlist.html">
-      Wishlist
-     </a>
-     <a href="forum.html">
-      Toy Talk
-     </a>
-    </div>
-    <div>
-     <h3>
-      Support
-     </h3>
-     <a href="feedback.html">
-      Feedback
-     </a>
-     <a href="cart.html">
-      Cart
-     </a>
-     <a href="login.html">
-      Login
-     </a>
-    </div>
-    <div>
-     <h3>
-      Stay in touch
-     </h3>
-     <form id="newsletterForm">
-      <label for="newsletterEmail">
-       Email
-      </label>
-      <div class="newsletter-row">
-       <input id="newsletterEmail" placeholder="you@example.com" required="" type="email"/>
-       <button class="btn btn-dark">
-        Subscribe
-       </button>
-      </div>
-     </form>
-    </div>
-   </div>
-   <div class="footer-bottom">
-    <div class="container">
-     <span>
-      &copy; 2026 Toy Haven
-     </span>
-     <span>
-      Front-end academic project
-     </span>
-    </div>
-   </div>
-  </footer>
-  <div aria-live="polite" class="toast" id="toast" role="status">
-  </div>
-  <script src="js/products.js">
-  </script>
-  <script src="js/main.js">
-  </script>
-  <script src="js/cart.js">
-  </script>
-   <script src="js/product-modal.js"></script>
-  <script src="js/page-animations.js"></script>
- </body>
-</html>
 
+    <header class="site-header">
+
+        <div class="announcement">
+            <p>
+                ✨ New toy arrivals &bull; Friendly shopping &bull; Local browser demo
+            </p>
+        </div>
+
+        <div class="container nav-wrap">
+
+            <a class="brand" href="index.html">
+                <img
+                    alt="Toy Haven TH logo"
+                    src="favicon.png"
+                >
+                <span class="brand-name">TOY HAVEN</span>
+            </a>
+
+            <button
+                aria-controls="mainNav"
+                aria-expanded="false"
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+            >
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="forum.html">Toy Talk</a>
+                <a href="feedback.html">Support</a>
+                <a href="login.html">Login</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <label class="sr-only" for="currency">
+                    Currency
+                </label>
+
+                <select class="currency" id="currency">
+                    <option>USD</option>
+                    <option>LKR</option>
+                    <option>GBP</option>
+                    <option>INR</option>
+                    <option>AUD</option>
+                    <option>EUR</option>
+                    <option>CAD</option>
+                    <option>AED</option>
+                </select>
+
+                <a class="cart-pill" href="cart.html">
+                    🛒
+                    <span id="cartCount">0</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="page-enter" id="main">
+
+        <section class="page-hero">
+            <div class="container">
+
+                <p class="eyebrow">
+                    YOUR CART
+                </p>
+
+                <h1>
+                    A cart full of happy possibilities.
+                </h1>
+
+            </div>
+        </section>
+
+        <section class="section container cart-layout">
+
+            <div id="cartItems"></div>
+
+            <aside class="summary-card">
+
+                <h2>
+                    Order summary
+                </h2>
+
+                <div id="cartSummary"></div>
+
+                <a
+                    class="btn btn-primary full"
+                    href="checkout.html"
+                >
+                    Proceed to checkout
+                </a>
+
+                <button
+                    class="btn btn-soft full"
+                    id="clearCart"
+                    type="button"
+                >
+                    Clear cart
+                </button>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <img
+                    alt="Toy Haven logo"
+                    class="footer-logo"
+                    src="favicon.png"
+                >
+
+                <p>
+                    A bright little corner for toys, collectibles and everyday wonder.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>Explore</h3>
+
+                <a href="products.html">
+                    Shop Toys
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="forum.html">
+                    Toy Talk
+                </a>
+
+            </div>
+
+            <div>
+
+                <h3>Support</h3>
+
+                <a href="feedback.html">
+                    Feedback
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+            <div>
+
+                <h3>Stay in touch</h3>
+
+                <form id="newsletterForm">
+
+                    <label for="newsletterEmail">
+                        Email
+                    </label>
+
+                    <div class="newsletter-row">
+
+                        <input
+                            id="newsletterEmail"
+                            placeholder="you@example.com"
+                            required
+                            type="email"
+                        >
+
+                        <button
+                            class="btn btn-dark"
+                            type="submit"
+                        >
+                            Subscribe
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <span>
+                    &copy; 2026 Toy Haven
+                </span>
+
+                <span>
+                    Front-end academic project
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <div
+        aria-live="polite"
+        class="toast"
+        id="toast"
+        role="status"
+    ></div>
+
+    <!-- JavaScript files are in the repository root -->
+    <script src="products.js"></script>
+    <script src="main.js"></script>
+    <script src="cart.js"></script>
+    <script src="product-modal.js"></script>
+    <script src="page-animations.js"></script>
+
+</body>
+</html>
