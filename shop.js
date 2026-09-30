@@ -70,20 +70,27 @@ function renderShop() {
 
 
 function setupShop() {
-    const params = new URLSearchParams(window.location.search);
+    const params =
+        new URLSearchParams(window.location.search);
 
-    const requestedCategory = params.get('category');
+    const requestedCategory =
+        params.get('category');
 
     const categoryFilter =
         document.getElementById('categoryFilter');
 
     /* Allow category links from other pages */
     if (requestedCategory && categoryFilter) {
-        const validOption = Array.from(categoryFilter.options)
-            .some((option) => option.value === requestedCategory);
+        const validOption =
+            Array.from(categoryFilter.options)
+                .some(
+                    (option) =>
+                        option.value === requestedCategory
+                );
 
         if (validOption) {
-            categoryFilter.value = requestedCategory;
+            categoryFilter.value =
+                requestedCategory;
         }
     }
 
@@ -92,12 +99,18 @@ function setupShop() {
         document.getElementById('productSearch');
 
     if (searchInput) {
-        searchInput.addEventListener('input', renderShop);
+        searchInput.addEventListener(
+            'input',
+            renderShop
+        );
     }
 
     /* Category filter */
     if (categoryFilter) {
-        categoryFilter.addEventListener('change', renderShop);
+        categoryFilter.addEventListener(
+            'change',
+            renderShop
+        );
     }
 
     /* Sort */
@@ -105,7 +118,10 @@ function setupShop() {
         document.getElementById('sortProducts');
 
     if (sortProducts) {
-        sortProducts.addEventListener('change', renderShop);
+        sortProducts.addEventListener(
+            'change',
+            renderShop
+        );
     }
 
     renderShop();
@@ -113,16 +129,18 @@ function setupShop() {
 
 
 function homeProducts() {
-    const grid = document.getElementById('homeProducts');
+    const grid =
+        document.getElementById('homeProducts');
 
     if (!grid) {
         return;
     }
 
-    grid.innerHTML = products
-        .slice(0, 10)
-        .map(card)
-        .join('');
+    grid.innerHTML =
+        products
+            .slice(0, 10)
+            .map(card)
+            .join('');
 
     attachCardEvents();
     updatePrices();
@@ -130,25 +148,35 @@ function homeProducts() {
 
 
 function featured() {
-    const box = document.getElementById('featuredProduct');
+    const box =
+        document.getElementById('featuredProduct');
 
     if (!box) {
         return;
     }
 
     const startOfYear =
-        new Date(new Date().getFullYear(), 0, 0);
+        new Date(
+            new Date().getFullYear(),
+            0,
+            0
+        );
 
     const dayOfYear =
         Math.floor(
-            (Date.now() - startOfYear) / 86400000
+            (Date.now() - startOfYear) /
+            86400000
         );
 
     const product =
-        products[dayOfYear % products.length];
+        products[
+            dayOfYear % products.length
+        ];
 
     box.innerHTML = `
-        <article class="featured-card reveal visible">
+        <article
+            class="featured-card reveal visible"
+            aria-labelledby="featuredProductTitle">
 
             <img
                 src="${product.image}"
@@ -161,7 +189,7 @@ function featured() {
                     FEATURED PRODUCT OF THE DAY
                 </p>
 
-                <h2>
+                <h2 id="featuredProductTitle">
                     ${product.name}
                 </h2>
 
@@ -169,8 +197,12 @@ function featured() {
                     ${product.description}
                 </p>
 
-                <div>
+                <div
+                    class="featured-rating"
+                    aria-label="Product rating: ${product.rating} out of 5 stars">
+
                     ${stars(product.rating)}
+
                 </div>
 
                 <strong
@@ -205,17 +237,23 @@ function featured() {
         document.getElementById('featuredAdd');
 
     if (featuredAdd) {
-        featuredAdd.addEventListener('click', () => {
-            addToCart(product.id);
-        });
+        featuredAdd.addEventListener(
+            'click',
+            () => {
+                addToCart(product.id);
+            }
+        );
     }
 
     updatePrices();
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupShop();
-    homeProducts();
-    featured();
-});
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+        setupShop();
+        homeProducts();
+        featured();
+    }
+);
