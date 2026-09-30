@@ -12,22 +12,20 @@ function ensureProductModal() {
     modal.innerHTML = `
         <div
             class="quick-view-backdrop"
-            data-close-modal
-        ></div>
+            data-close-modal>
+        </div>
 
         <section
             class="quick-view-dialog"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="quickViewTitle"
-        >
+            aria-labelledby="quickViewTitle">
 
             <button
                 class="quick-view-close"
                 type="button"
                 aria-label="Close quick view"
-                data-close-modal
-            >
+                data-close-modal>
                 ×
             </button>
 
@@ -36,30 +34,30 @@ function ensureProductModal() {
                 <div class="quick-view-image-wrap">
                     <img
                         id="quickViewImage"
-                        alt=""
-                    >
+                        src=""
+                        alt="">
                 </div>
 
                 <div class="quick-view-copy">
 
                     <p
                         class="product-category"
-                        id="quickViewCategory"
-                    ></p>
+                        id="quickViewCategory">
+                    </p>
 
                     <h2 id="quickViewTitle"></h2>
 
                     <p
                         class="quick-view-rating"
-                        id="quickViewRating"
-                    ></p>
+                        id="quickViewRating">
+                    </p>
 
                     <p id="quickViewDescription"></p>
 
                     <strong
                         class="quick-view-price"
-                        id="quickViewPrice"
-                    ></strong>
+                        id="quickViewPrice">
+                    </strong>
 
                     <div class="quick-view-stock">
                         In stock • Ready for your collection
@@ -70,16 +68,14 @@ function ensureProductModal() {
                         <button
                             class="btn btn-primary"
                             id="quickViewCart"
-                            type="button"
-                        >
+                            type="button">
                             🛒 Add to Cart
                         </button>
 
                         <button
                             class="btn btn-soft"
                             id="quickViewCollection"
-                            type="button"
-                        >
+                            type="button">
                             ♡ Add to Collection
                         </button>
 
@@ -88,8 +84,7 @@ function ensureProductModal() {
                     <a
                         class="detail-link"
                         id="quickViewFullLink"
-                        href="#"
-                    >
+                        href="#">
                         Open full toy page →
                     </a>
 
@@ -103,61 +98,64 @@ function ensureProductModal() {
     document.body.appendChild(modal);
 }
 
+
 function openProductModal(id) {
     const product = products.find(
         (item) => item.id === Number(id)
     );
 
     const modal =
-        document.getElementById(
-            'productQuickView'
-        );
+        document.getElementById('productQuickView');
 
     if (!product || !modal) {
         return;
     }
 
     const image =
-        document.getElementById(
-            'quickViewImage'
-        );
+        document.getElementById('quickViewImage');
+
+    const category =
+        document.getElementById('quickViewCategory');
+
+    const title =
+        document.getElementById('quickViewTitle');
+
+    const rating =
+        document.getElementById('quickViewRating');
+
+    const description =
+        document.getElementById('quickViewDescription');
+
+    const price =
+        document.getElementById('quickViewPrice');
+
+    const fullLink =
+        document.getElementById('quickViewFullLink');
+
+    const cartButton =
+        document.getElementById('quickViewCart');
+
+    const collectionButton =
+        document.getElementById('quickViewCollection');
 
     image.src = product.image;
     image.alt = product.name;
 
-    document.getElementById(
-        'quickViewCategory'
-    ).textContent = product.category;
+    category.textContent = product.category;
 
-    document.getElementById(
-        'quickViewTitle'
-    ).textContent = product.name;
+    title.textContent = product.name;
 
-    document.getElementById(
-        'quickViewRating'
-    ).textContent =
+    rating.textContent =
         `★ ${product.rating} • ${product.likes} likes`;
 
-    document.getElementById(
-        'quickViewDescription'
-    ).textContent =
-        product.description;
+    description.textContent = product.description;
 
-    document.getElementById(
-        'quickViewPrice'
-    ).textContent =
-        money(product.price);
+    price.textContent = money(product.price);
 
-    document.getElementById(
-        'quickViewFullLink'
-    ).href =
+    fullLink.href =
         `product-details.html?id=${product.id}`;
 
-    const collectionButton =
-        document.getElementById(
-            'quickViewCollection'
-        );
-
+    /* Collection status */
     const status =
         getCollectionStatus(product.id);
 
@@ -166,15 +164,13 @@ function openProductModal(id) {
             ? `♥ ${status}`
             : '♡ Add to Collection';
 
-    document.getElementById(
-        'quickViewCart'
-    ).onclick = () => {
-
+    /* Add to cart */
+    cartButton.onclick = () => {
         addToCart(product.id);
-
         closeProductModal();
     };
 
+    /* Collection */
     collectionButton.onclick = () => {
 
         toggleWishlist(product.id);
@@ -195,9 +191,7 @@ function openProductModal(id) {
         'false'
     );
 
-    document.body.classList.add(
-        'modal-open'
-    );
+    document.body.classList.add('modal-open');
 
     requestAnimationFrame(() => {
         document
@@ -206,11 +200,10 @@ function openProductModal(id) {
     });
 }
 
+
 function closeProductModal() {
     const modal =
-        document.getElementById(
-            'productQuickView'
-        );
+        document.getElementById('productQuickView');
 
     if (!modal) {
         return;
@@ -223,54 +216,42 @@ function closeProductModal() {
         'true'
     );
 
-    document.body.classList.remove(
-        'modal-open'
-    );
+    document.body.classList.remove('modal-open');
 }
 
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
 
-        ensureProductModal();
+document.addEventListener('DOMContentLoaded', () => {
 
-        document.addEventListener(
-            'click',
-            (event) => {
+    ensureProductModal();
 
-                const quickView =
-                    event.target.closest(
-                        '[data-quick-view]'
-                    );
+    document.addEventListener('click', (event) => {
 
-                if (quickView) {
+        const quickView =
+            event.target.closest('[data-quick-view]');
 
-                    openProductModal(
-                        quickView.dataset
-                            .quickView
-                    );
+        if (quickView) {
+            openProductModal(
+                quickView.dataset.quickView
+            );
 
-                    return;
-                }
+            return;
+        }
 
-                if (
-                    event.target.closest(
-                        '[data-close-modal]'
-                    )
-                ) {
-                    closeProductModal();
-                }
-            }
-        );
+        if (
+            event.target.closest(
+                '[data-close-modal]'
+            )
+        ) {
+            closeProductModal();
+        }
+    });
 
-        document.addEventListener(
-            'keydown',
-            (event) => {
+    document.addEventListener('keydown', (event) => {
 
-                if (event.key === 'Escape') {
-                    closeProductModal();
-                }
-            }
-        );
-    }
-);
+        if (event.key === 'Escape') {
+            closeProductModal();
+        }
+
+    });
+
+});
