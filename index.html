@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="Toy Haven responsive toy store front-end" name="description"/>
+  <meta content="#242424" name="theme-color"/>
+  <link href="manifest.json" rel="manifest"/>
+  <link href="favicon/favicon.png" rel="icon"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <title>
+   Index | Toy Haven
+  </title>
+ </head>
+ <body data-page="home">
+
+  <div class="ambient-effects" aria-hidden="true">
+   <span class="drop drop-1"></span>
+   <span class="drop drop-2"></span>
+   <span class="drop drop-3"></span>
+   <span class="drop drop-4"></span>
+   <span class="drop drop-5"></span>
+   <span class="drop drop-6"></span>
+   <span class="drop drop-7"></span>
+   <span class="drop drop-8"></span>
+   <span class="paint paint-1"></span>
+   <span class="paint paint-2"></span>
+   <span class="paint paint-3"></span>
+   <span class="splash splash-1"></span>
+   <span class="splash splash-2"></span>
+  </div>
+  <a class="skip-link" href="#main">
+   Skip to content
+  </a>
+  <header class="site-header">
+   <div class="announcement">
+    <p>
+     ✨ New toy arrivals &bull; Friendly shopping &bull; Local browser demo
+    </p>
+   </div>
+   <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+     <img alt="Toy Haven TH logo" src="images/logo-user.png"/>
+     <span class="brand-name">TOY HAVEN</span>
+    </a>
+    <button aria-controls="mainNav" aria-expanded="false" class="menu-btn" id="menuBtn">
+     ☰
+    </button>
+    <nav class="main-nav" id="mainNav">
+     <a href="index.html">
+      Home
+     </a>
+     <a href="products.html">
+      Shop
+     </a>
+     <a href="wishlist.html">
+      Wishlist
+     </a>
+     <a href="forum.html">
+      Toy Talk
+     </a>
+     <a href="feedback.html">
+      Support
+     </a>
+     <a href="login.html">
+      Login
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <label class="sr-only" for="currency">
+      Currency
+     </label>
+     <select class="currency" id="currency">
+      <option>
+       USD
+      </option>
+      <option>
+       LKR
+      </option>
+      <option>
+       GBP
+      </option>
+      <option>
+       INR
+      </option>
+      <option>
+       AUD
+      </option>
+      <option>
+       EUR
+      </option>
+      <option>
+       CAD
+      </option>
+      <option>
+       AED
+      </option>
+     </select>
+     <a class="cart-pill" href="cart.html">
+      🛒
+      <span id="cartCount">
+       0
+      </span>
+     </a>
+    </div>
+   </div>
+  </header>
+  <main class="page-enter" id="main">
+   <section class="hero hero-home">
+    <div class="bubble bubble-1">
+    </div>
+    <div class="bubble bubble-2">
+    </div>
+    <div class="spark spark-1">
+     ✦
+    </div>
+    <div class="spark spark-2">
+     ✦
+    </div>
+    <div class="container hero-grid">
+     <div class="hero-copy">
+      <p class="eyebrow">
+       TOY HAVEN
+      </p>
+      <h1>
+       Where every toy has a story.
+      </h1>
+      <p>
+       Explore building sets, teddy bears, diecast cars, figurines and games in one bright little world.
+      </p>
+      <div class="button-row">
+       <a class="btn btn-primary" href="products.html">
+        Explore toys
+       </a>
+       <a class="btn btn-soft" href="#featured">
+        Today's pick
+       </a>
+      </div>
+     </div>
+     <div class="hero-stage">
+      <div class="hero-banner">
+       <img
+        alt="Toy Haven toy collection"
+        id="heroBannerImage"
+        src="images/banner-toys.webp"
+       />
+       <div class="hero-banner-caption">
+        <p class="eyebrow">
+         WELCOME TO TOY HAVEN
+        </p>
+        <h2>
+         Build. Collect. Smile.
+        </h2>
+        <p>
+         New favourites are always waiting.
+        </p>
+       </div>
+      </div>
+      <div class="orbit">
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section container" id="featured">
+    <div class="section-title">
+     <div>
+      <p class="eyebrow">
+       FEATURED PRODUCT OF THE DAY
+      </p>
+      <h2>
+       Something special today
+      </h2>
+     </div>
+     <a class="text-link" href="products.html">
+      See all toys &rarr;
+     </a>
+    </div>
+    <div id="featuredProduct">
+    </div>
+   </section>
+   <section class="section tinted">
+    <div class="container">
+     <div class="section-title">
+      <div>
+       <p class="eyebrow">
+        SHOP BY COLLECTION
+       </p>
+       <h2>
+        Choose your kind of fun.
+       </h2>
+      </div>
+     </div>
+     <div class="category-grid">
+      <a class="category-card blue" href="products.html?category=Toys">
+       <span>
+        🧱
+       </span>
+       <h3>
+        Toys & Building Sets
+       </h3>
+       <p>
+        Building sets, teddy bears and colourful adventure toys.
+       </p>
+      </a>
+      <a class="category-card pink" href="products.html?category=Toys">
+       <span>
+        🧸
+       </span>
+       <h3>
+        Teddy Bears & Soft Toys
+       </h3>
+       <p>
+        Soft friends for cosy moments.
+       </p>
+      </a>
+      <a class="category-card yellow" href="products.html?category=Diecast%20Cars">
+       <span>
+        🚗
+       </span>
+       <h3>
+        Diecast Cars
+       </h3>
+       <p>
+        Mini racers and collector rides.
+       </p>
+      </a>
+      <a class="category-card green" href="products.html?category=Figurines">
+       <span>
+        🤖
+       </span>
+       <h3>
+        Figurines
+       </h3>
+       <p>
+        Robots, heroes and space adventures.
+       </p>
+      </a>
+     </div>
+    </div>
+   </section>
+   <section class="section container">
+    <div class="section-title">
+     <div>
+      <p class="eyebrow">
+       POPULAR NOW
+      </p>
+      <h2>
+       Fresh on the shelf
+      </h2>
+     </div>
+    </div>
+    <div class="product-grid" id="homeProducts">
+    </div>
+   </section>
+   <section class="section container">
+    <div class="community-banner">
+     <div>
+      <p class="eyebrow">
+       TOY TALK
+      </p>
+      <h2>
+       Like it. Review it. Talk about it.
+      </h2>
+      <p>
+       Share your favourite toy, post a comment and help another shopper decide.
+      </p>
+     </div>
+     <a class="btn btn-dark" href="forum.html">
+      Join the conversation
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="site-footer">
+   <div class="container footer-grid">
+    <div>
+     <img alt="Toy Haven logo" class="footer-logo" src="images/logo-user.png"/>
+     <p>
+      A bright little corner for toys, collectibles and everyday wonder.
+     </p>
+    </div>
+    <div>
+     <h3>
+      Explore
+     </h3>
+     <a href="products.html">
+      Shop Toys
+     </a>
+     <a href="wishlist.html">
+      Wishlist
+     </a>
+     <a href="forum.html">
+      Toy Talk
+     </a>
+    </div>
+    <div>
+     <h3>
+      Support
+     </h3>
+     <a href="feedback.html">
+      Feedback
+     </a>
+     <a href="cart.html">
+      Cart
+     </a>
+     <a href="login.html">
+      Login
+     </a>
+    </div>
+    <div>
+     <h3>
+      Stay in touch
+     </h3>
+     <form id="newsletterForm">
+      <label for="newsletterEmail">
+       Email
+      </label>
+      <div class="newsletter-row">
+       <input id="newsletterEmail" placeholder="you@example.com" required="" type="email"/>
+       <button class="btn btn-dark">
+        Subscribe
+       </button>
+      </div>
+     </form>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <div class="container">
+     <span>
+      &copy; 2026 Toy Haven
+     </span>
+     <span>
+      Front-end academic project
+     </span>
+    </div>
+   </div>
+  </footer>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+  <script src="js/products.js">
+  </script>
+  <script src="js/main.js">
+  </script>
+  <script src="js/shop.js">
+  </script>
+   <script src="js/product-modal.js"></script>
+  <script src="js/page-animations.js"></script>
+ </body>
+</html>
+

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="Toy Haven responsive toy store front-end" name="description"/>
+  <meta content="#242424" name="theme-color"/>
+  <link href="manifest.json" rel="manifest"/>
+  <link href="favicon/favicon.png" rel="icon"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <title>
+   Feedback | Toy Haven
+  </title>
+ </head>
+ <body data-page="feedback">
+
+  <div class="ambient-effects" aria-hidden="true">
+   <span class="drop drop-1"></span>
+   <span class="drop drop-2"></span>
+   <span class="drop drop-3"></span>
+   <span class="drop drop-4"></span>
+   <span class="drop drop-5"></span>
+   <span class="drop drop-6"></span>
+   <span class="drop drop-7"></span>
+   <span class="drop drop-8"></span>
+   <span class="paint paint-1"></span>
+   <span class="paint paint-2"></span>
+   <span class="paint paint-3"></span>
+   <span class="splash splash-1"></span>
+   <span class="splash splash-2"></span>
+  </div>
+  <a class="skip-link" href="#main">
+   Skip to content
+  </a>
+  <header class="site-header">
+   <div class="announcement">
+    <p>
+     ✨ New toy arrivals &bull; Friendly shopping &bull; Local browser demo
+    </p>
+   </div>
+   <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+     <img alt="Toy Haven TH logo" src="images/logo-user.png"/>
+     <span class="brand-name">TOY HAVEN</span>
+    </a>
+    <button aria-controls="mainNav" aria-expanded="false" class="menu-btn" id="menuBtn">
+     ☰
+    </button>
+    <nav class="main-nav" id="mainNav">
+     <a href="index.html">
+      Home
+     </a>
+     <a href="products.html">
+      Shop
+     </a>
+     <a href="wishlist.html">
+      Wishlist
+     </a>
+     <a href="forum.html">
+      Toy Talk
+     </a>
+     <a href="feedback.html">
+      Support
+     </a>
+     <a href="login.html">
+      Login
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <label class="sr-only" for="currency">
+      Currency
+     </label>
+     <select class="currency" id="currency">
+      <option>
+       USD
+      </option>
+      <option>
+       LKR
+      </option>
+      <option>
+       GBP
+      </option>
+      <option>
+       INR
+      </option>
+      <option>
+       AUD
+      </option>
+      <option>
+       EUR
+      </option>
+      <option>
+       CAD
+      </option>
+      <option>
+       AED
+      </option>
+     </select>
+     <a class="cart-pill" href="cart.html">
+      🛒
+      <span id="cartCount">
+       0
+      </span>
+     </a>
+    </div>
+   </div>
+  </header>
+  <main class="page-enter" id="main">
+   <section class="page-hero">
+    <div class="container">
+     <p class="eyebrow">
+      FEEDBACK &amp; SUPPORT
+     </p>
+     <h1>
+      We would love to hear from you.
+     </h1>
+     <p>
+      Tell us what was easy, what could be clearer or what you enjoyed.
+     </p>
+    </div>
+   </section>
+   <section class="section container support-grid">
+    <form class="form-card" id="feedbackForm">
+     <h2>
+      Send feedback
+     </h2>
+     <label>
+      Name
+      <input name="name" required=""/>
+     </label>
+     <label>
+      Email
+      <input name="email" required="" type="email"/>
+     </label>
+     <label>
+      Message
+      <textarea name="message" required="" rows="7"></textarea>
+     </label>
+     <button class="btn btn-primary full">
+      Send feedback
+     </button>
+    </form>
+    <div>
+     <div class="support-card">
+      <h2>
+       Warm, simple support
+      </h2>
+      <p>
+       Every message is a chance to make Toy Haven easier and nicer to use.
+      </p>
+     </div>
+     <div class="faq">
+      <h2>
+       FAQ
+      </h2>
+      <button class="faq-q">
+       How does the cart work?
+       <span>
+        +
+       </span>
+      </button>
+      <div class="faq-a">
+       Your cart uses localStorage, so it remains when you refresh.
+      </div>
+      <button class="faq-q">
+       Is payment real?
+       <span>
+        +
+       </span>
+      </button>
+      <div class="faq-a">
+       No. Checkout is an academic front-end simulation.
+      </div>
+      <button class="faq-q">
+       Can I save toys?
+       <span>
+        +
+       </span>
+      </button>
+      <div class="faq-a">
+       Yes. Use the wishlist on the shop or product page.
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="site-footer">
+   <div class="container footer-grid">
+    <div>
+     <img alt="Toy Haven logo" class="footer-logo" src="images/logo-user.png"/>
+     <p>
+      A bright little corner for toys, collectibles and everyday wonder.
+     </p>
+    </div>
+    <div>
+     <h3>
+      Explore
+     </h3>
+     <a href="products.html">
+      Shop Toys
+     </a>
+     <a href="wishlist.html">
+      Wishlist
+     </a>
+     <a href="forum.html">
+      Toy Talk
+     </a>
+    </div>
+    <div>
+     <h3>
+      Support
+     </h3>
+     <a href="feedback.html">
+      Feedback
+     </a>
+     <a href="cart.html">
+      Cart
+     </a>
+     <a href="login.html">
+      Login
+     </a>
+    </div>
+    <div>
+     <h3>
+      Stay in touch
+     </h3>
+     <form id="newsletterForm">
+      <label for="newsletterEmail">
+       Email
+      </label>
+      <div class="newsletter-row">
+       <input id="newsletterEmail" placeholder="you@example.com" required="" type="email"/>
+       <button class="btn btn-dark">
+        Subscribe
+       </button>
+      </div>
+     </form>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <div class="container">
+     <span>
+      &copy; 2026 Toy Haven
+     </span>
+     <span>
+      Front-end academic project
+     </span>
+    </div>
+   </div>
+  </footer>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+  <script src="js/products.js">
+  </script>
+  <script src="js/main.js">
+  </script>
+  <script src="js/community.js">
+  </script>
+   <script src="js/product-modal.js"></script>
+  <script src="js/page-animations.js"></script>
+ </body>
+</html>
+
