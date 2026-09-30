@@ -1,8 +1,6 @@
 function renderCheckout() {
     const box =
-        document.getElementById(
-            'checkoutSummary'
-        );
+        document.getElementById('checkoutSummary');
 
     if (!box) {
         return;
@@ -12,16 +10,10 @@ function renderCheckout() {
         readStore('toyCart', []);
 
     if (!cart.length) {
-
         box.innerHTML = `
             <div class="empty-card">
-                <h3>
-                    Your cart is empty.
-                </h3>
-
-                <p>
-                    Add a toy before checking out.
-                </p>
+                <h3>Your cart is empty.</h3>
+                <p>Add a toy before checking out.</p>
             </div>
         `;
 
@@ -31,49 +23,44 @@ function renderCheckout() {
     let total = 0;
 
     box.innerHTML =
-        cart
-            .map((item) => {
+        cart.map((item) => {
 
-                const product =
-                    products.find(
-                        (entry) =>
-                            entry.id === item.id
-                    );
+            const product =
+                products.find(
+                    (entry) =>
+                        entry.id === item.id
+                );
 
-                if (!product) {
-                    return '';
-                }
+            if (!product) {
+                return '';
+            }
 
-                const subtotal =
-                    product.price * item.qty;
+            const subtotal =
+                product.price * item.qty;
 
-                total += subtotal;
+            total += subtotal;
 
-                return `
-                    <div
-                        class="summary-row checkout-summary-item"
-                    >
+            return `
+                <div class="summary-row checkout-summary-item">
 
-                        <span>
-                            ${product.name} × ${item.qty}
-                        </span>
+                    <span>
+                        ${product.name} × ${item.qty}
+                    </span>
 
-                        <strong>
-                            ${money(subtotal)}
-                        </strong>
+                    <strong>
+                        ${money(subtotal)}
+                    </strong>
 
-                    </div>
-                `;
-            })
-            .join('') +
+                </div>
+            `;
+        }).join('') +
+
         `
             <hr>
 
             <div class="summary-total">
 
-                <span>
-                    Total
-                </span>
+                <span>Total</span>
 
                 <strong>
                     ${money(total)}
@@ -83,7 +70,9 @@ function renderCheckout() {
         `;
 }
 
+
 function clearCheckoutErrors(form) {
+
     form
         .querySelectorAll('.field-error')
         .forEach((element) => {
@@ -99,13 +88,8 @@ function clearCheckoutErrors(form) {
         });
 }
 
-function showCheckoutError(
-    field,
-    message
-) {
-    if (!field) {
-        return;
-    }
+
+function showCheckoutError(field, message) {
 
     field.classList.add(
         'field-invalid'
@@ -126,7 +110,9 @@ function showCheckoutError(
     );
 }
 
+
 function validateCheckout(form) {
+
     clearCheckoutErrors(form);
 
     const values =
@@ -154,10 +140,12 @@ function validateCheckout(form) {
     const payment =
         form.elements.payment;
 
+
     if (
         !values.name?.trim() ||
         values.name.trim().length < 2
     ) {
+
         showCheckoutError(
             name,
             'Please enter your full name.'
@@ -166,13 +154,13 @@ function validateCheckout(form) {
         valid = false;
     }
 
-    /*
-     * Correct email validation.
-     */
+
     if (
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-            .test(values.email || '')
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            values.email || ''
+        )
     ) {
+
         showCheckoutError(
             email,
             'Please enter a valid email address.'
@@ -181,10 +169,13 @@ function validateCheckout(form) {
         valid = false;
     }
 
+
     if (
-        !/^[0-9+()\s-]{7,18}$/
-            .test(values.phone || '')
+        !/^[0-9+()\s-]{7,18}$/.test(
+            values.phone || ''
+        )
     ) {
+
         showCheckoutError(
             phone,
             'Please enter a valid phone number.'
@@ -193,10 +184,12 @@ function validateCheckout(form) {
         valid = false;
     }
 
+
     if (
         !values.address?.trim() ||
         values.address.trim().length < 10
     ) {
+
         showCheckoutError(
             address,
             'Please enter a complete delivery address.'
@@ -205,7 +198,9 @@ function validateCheckout(form) {
         valid = false;
     }
 
+
     if (!values.country) {
+
         showCheckoutError(
             country,
             'Please select a country.'
@@ -214,7 +209,9 @@ function validateCheckout(form) {
         valid = false;
     }
 
+
     if (!values.payment) {
+
         showCheckoutError(
             payment,
             'Please select a payment method.'
@@ -223,10 +220,13 @@ function validateCheckout(form) {
         valid = false;
     }
 
+
     return valid;
 }
 
+
 function setupCheckout() {
+
     const form =
         document.getElementById(
             'checkoutForm'
@@ -235,6 +235,7 @@ function setupCheckout() {
     if (!form) {
         return;
     }
+
 
     form.addEventListener(
         'input',
@@ -259,11 +260,13 @@ function setupCheckout() {
                         'field-error'
                     )
                 ) {
+
                     next.remove();
                 }
             }
         }
     );
+
 
     form.addEventListener(
         'submit',
@@ -271,11 +274,13 @@ function setupCheckout() {
 
             event.preventDefault();
 
+
             const cart =
                 readStore(
                     'toyCart',
                     []
                 );
+
 
             if (!cart.length) {
 
@@ -286,9 +291,8 @@ function setupCheckout() {
                 return;
             }
 
-            if (
-                !validateCheckout(form)
-            ) {
+
+            if (!validateCheckout(form)) {
 
                 showToast(
                     'Please correct the highlighted checkout fields.'
@@ -297,15 +301,19 @@ function setupCheckout() {
                 return;
             }
 
+
             const details =
                 Object.fromEntries(
                     new FormData(form)
                 );
 
+
             const orderReference =
                 `TH-${new Date().getFullYear()}-${Math.floor(
-                    10000 + Math.random() * 90000
+                    10000 +
+                    Math.random() * 89999
                 )}`;
+
 
             const orders =
                 readStore(
@@ -313,26 +321,39 @@ function setupCheckout() {
                     []
                 );
 
+
             orders.push({
-                order: orderReference,
-                details,
-                cart,
+
+                order:
+                    orderReference,
+
+                details:
+                    details,
+
+                cart:
+                    cart,
+
                 date:
                     new Date().toISOString()
+
             });
+
 
             writeStore(
                 'toyOrders',
                 orders
             );
 
+
             localStorage.removeItem(
                 'toyCart'
             );
 
+
             form.classList.add(
                 'hidden'
             );
+
 
             const orderNumber =
                 document.getElementById(
@@ -340,9 +361,11 @@ function setupCheckout() {
                 );
 
             if (orderNumber) {
+
                 orderNumber.textContent =
                     `Order reference: ${orderReference}`;
             }
+
 
             const orderSuccess =
                 document.getElementById(
@@ -350,12 +373,15 @@ function setupCheckout() {
                 );
 
             if (orderSuccess) {
+
                 orderSuccess.classList.remove(
                     'hidden'
                 );
             }
 
+
             updateCartCount();
+
 
             showToast(
                 'Order sent successfully! Thank you for your purchase! 🎉'
@@ -364,10 +390,14 @@ function setupCheckout() {
     );
 }
 
+
 document.addEventListener(
     'DOMContentLoaded',
     () => {
+
         renderCheckout();
+
         setupCheckout();
+
     }
 );
