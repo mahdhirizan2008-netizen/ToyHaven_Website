@@ -1,198 +1,173 @@
 function renderWishlist() {
-    const grid =
-        document.getElementById(
-            'wishlistGrid'
-        );
+    const grid = document.getElementById('wishlistGrid');
 
     if (!grid) {
         return;
     }
 
-    const collection =
-        getCollection();
+    const collection = getCollection();
+
+    const activeFilter =
+        document.querySelector('[data-interest-filter].active');
 
     const filter =
-        document.querySelector(
-            '[data-interest-filter].active'
-        )?.dataset.interestFilter ||
-        'all';
+        activeFilter?.dataset.interestFilter || 'all';
 
-    const list =
-        products.filter((product) => {
+    const list = products.filter((product) => {
+        const status = getCollectionStatus(product.id);
 
-            const status =
-                getCollectionStatus(
-                    product.id
-                );
+        return (
+            status &&
+            (filter === 'all' || status === filter)
+        );
+    });
 
-            return (
-                status &&
-                (
-                    filter === 'all' ||
-                    status === filter
-                )
-            );
-        });
+    grid.innerHTML = list.map((product) => {
 
-    grid.innerHTML =
-        list
-            .map((product) => {
+        const status =
+            getCollectionStatus(product.id);
 
-                const status =
-                    getCollectionStatus(
-                        product.id
-                    );
+        const label =
+            status || 'Interested';
 
-                const label =
-                    status || 'Interested';
+        return `
+            <article class="product-card collection-card reveal visible">
 
-                return `
-                    <article
-                        class="product-card collection-card reveal visible"
-                    >
+                <a
+                    class="product-image"
+                    href="product-details.html?id=${product.id}">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        loading="lazy">
+
+                </a>
+
+                <div class="product-content">
+
+                    <p class="product-category">
+                        ${product.category}
+                    </p>
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <div class="collection-status ${label
+                        .toLowerCase()
+                        .replace(' ', '-')}">
+                        ${label}
+                    </div>
+
+                    <p class="product-description">
+                        ${product.description}
+                    </p>
+
+                    <div class="price-line">
+
+                        <strong data-usd="${product.price}">
+                            ${money(product.price)}
+                        </strong>
+
+                        <button
+                            class="heart-button selected"
+                            data-remove-collection="${product.id}"
+                            aria-label="Remove ${product.name} from collection"
+                            type="button">
+                            ♥
+                        </button>
+
+                    </div>
+
+                    <div class="collection-actions">
+
+                        <button
+                            class="btn btn-soft collection-status-button"
+                            data-status-id="${product.id}"
+                            data-status="Interested"
+                            type="button">
+                            Interested
+                        </button>
+
+                        <button
+                            class="btn btn-soft collection-status-button"
+                            data-status-id="${product.id}"
+                            data-status="Owned"
+                            type="button">
+                            Owned
+                        </button>
+
+                        <button
+                            class="btn btn-soft collection-status-button"
+                            data-status-id="${product.id}"
+                            data-status="Not Interested"
+                            type="button">
+                            Not Interested
+                        </button>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            data-collection-cart="${product.id}"
+                            type="button">
+                            🛒 Add to Cart
+                        </button>
 
                         <a
-                            class="product-image"
-                            href="product-details.html?id=${product.id}"
-                        >
-                            <img
-                                src="${product.image}"
-                                alt="${product.name}"
-                                loading="lazy"
-                            >
+                            class="btn btn-soft"
+                            href="product-details.html?id=${product.id}">
+                            View toy
                         </a>
 
-                        <div class="product-content">
+                    </div>
 
-                            <p class="product-category">
-                                ${product.category}
-                            </p>
+                </div>
 
-                            <h3>
-                                ${product.name}
-                            </h3>
+            </article>
+        `;
 
-                            <div
-                                class="collection-status ${label
-                                    .toLowerCase()
-                                    .replace(' ', '-')}"
-                            >
-                                ${label}
-                            </div>
+    }).join('');
 
-                            <p class="product-description">
-                                ${product.description}
-                            </p>
+    const emptyMessage =
+        document.getElementById('wishlistEmpty');
 
-                            <div class="price-line">
+    const filteredEmpty =
+        document.getElementById('wishlistFilteredEmpty');
 
-                                <strong
-                                    data-usd="${product.price}"
-                                >
-                                    ${money(product.price)}
-                                </strong>
-
-                                <button
-                                    class="heart-button selected"
-                                    type="button"
-                                    data-remove-collection="${product.id}"
-                                    aria-label="Remove ${product.name} from collection"
-                                >
-                                    ♥
-                                </button>
-
-                            </div>
-
-                            <div class="collection-actions">
-
-                                <button
-                                    class="btn btn-soft collection-status-button"
-                                    type="button"
-                                    data-status-id="${product.id}"
-                                    data-status="Interested"
-                                >
-                                    Interested
-                                </button>
-
-                                <button
-                                    class="btn btn-soft collection-status-button"
-                                    type="button"
-                                    data-status-id="${product.id}"
-                                    data-status="Owned"
-                                >
-                                    Owned
-                                </button>
-
-                                <button
-                                    class="btn btn-soft collection-status-button"
-                                    type="button"
-                                    data-status-id="${product.id}"
-                                    data-status="Not Interested"
-                                >
-                                    Not Interested
-                                </button>
-
-                            </div>
-
-                            <div class="product-actions">
-
-                                <button
-                                    class="btn btn-primary"
-                                    type="button"
-                                    data-collection-cart="${product.id}"
-                                >
-                                    🛒 Add to Cart
-                                </button>
-
-                                <a
-                                    class="btn btn-soft"
-                                    href="product-details.html?id=${product.id}"
-                                >
-                                    View toy
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-                `;
-            })
-            .join('');
-
-    document
-        .getElementById('wishlistEmpty')
-        ?.classList.toggle(
+    if (emptyMessage) {
+        emptyMessage.classList.toggle(
             'hidden',
             list.length > 0 ||
             filter !== 'all' ||
             Object.keys(collection).length > 0
         );
+    }
 
-    document
-        .getElementById('wishlistFilteredEmpty')
-        ?.classList.toggle(
+    if (filteredEmpty) {
+        filteredEmpty.classList.toggle(
             'hidden',
             list.length > 0 ||
             filter === 'all'
         );
+    }
 
     grid
         .querySelectorAll('[data-status-id]')
         .forEach((button) => {
 
             const id =
-                Number(
-                    button.dataset.statusId
-                );
+                Number(button.dataset.statusId);
 
             const status =
                 button.dataset.status;
 
             button.classList.toggle(
                 'active',
-                getCollectionStatus(id) ===
-                    status
+                getCollectionStatus(id) === status
             );
 
             button.addEventListener(
@@ -206,8 +181,7 @@ function renderWishlist() {
 
                     const product =
                         products.find(
-                            (item) =>
-                                item.id === id
+                            (item) => item.id === id
                         );
 
                     showToast(
@@ -220,9 +194,7 @@ function renderWishlist() {
         });
 
     grid
-        .querySelectorAll(
-            '[data-remove-collection]'
-        )
+        .querySelectorAll('[data-remove-collection]')
         .forEach((button) => {
 
             button.addEventListener(
@@ -231,8 +203,7 @@ function renderWishlist() {
 
                     const id =
                         Number(
-                            button.dataset
-                                .removeCollection
+                            button.dataset.removeCollection
                         );
 
                     setCollectionStatus(
@@ -250,9 +221,7 @@ function renderWishlist() {
         });
 
     grid
-        .querySelectorAll(
-            '[data-collection-cart]'
-        )
+        .querySelectorAll('[data-collection-cart]')
         .forEach((button) => {
 
             button.addEventListener(
@@ -261,16 +230,24 @@ function renderWishlist() {
 
                     addToCart(
                         Number(
-                            button.dataset
-                                .collectionCart
+                            button.dataset.collectionCart
                         )
                     );
+
+                    button.textContent =
+                        'Added ✓';
+
+                    setTimeout(() => {
+                        button.textContent =
+                            '🛒 Add to Cart';
+                    }, 1200);
                 }
             );
         });
 
     updatePrices();
 }
+
 
 document.addEventListener(
     'DOMContentLoaded',
@@ -290,12 +267,13 @@ document.addEventListener(
                             .querySelectorAll(
                                 '[data-interest-filter]'
                             )
-                            .forEach(
-                                (item) =>
-                                    item.classList.remove(
-                                        'active'
-                                    )
-                            );
+                            .forEach((item) => {
+
+                                item.classList.remove(
+                                    'active'
+                                );
+
+                            });
 
                         button.classList.add(
                             'active'
@@ -304,6 +282,7 @@ document.addEventListener(
                         renderWishlist();
                     }
                 );
+
             });
 
         renderWishlist();
@@ -317,5 +296,6 @@ document.addEventListener(
             'productStateChanged',
             renderWishlist
         );
+
     }
 );
