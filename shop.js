@@ -8,9 +8,9 @@ function renderShop() {
     let list = [...products];
 
     const search =
-        (
-            document.getElementById('productSearch')?.value || ''
-        ).toLowerCase();
+        (document.getElementById('productSearch')?.value || '')
+            .trim()
+            .toLowerCase();
 
     const category =
         document.getElementById('categoryFilter')?.value || 'All';
@@ -18,21 +18,27 @@ function renderShop() {
     const sort =
         document.getElementById('sortProducts')?.value || 'recommended';
 
+    /* Search products */
     if (search) {
         list = list.filter((product) => {
-            const text =
-                `${product.name} ${product.category} ${product.description}`;
+            const text = `
+                ${product.name}
+                ${product.category}
+                ${product.description}
+            `;
 
             return text.toLowerCase().includes(search);
         });
     }
 
+    /* Filter by category */
     if (category !== 'All') {
-        list = list.filter(
-            (product) => product.category === category
-        );
+        list = list.filter((product) => {
+            return product.category === category;
+        });
     }
 
+    /* Sort products */
     if (sort === 'low') {
         list.sort((a, b) => a.price - b.price);
     }
@@ -45,104 +51,101 @@ function renderShop() {
         list.sort((a, b) => b.rating - a.rating);
     }
 
+    /* Display products */
     grid.innerHTML = list.map(card).join('');
 
+    /* Reconnect buttons after rendering */
     attachCardEvents();
+
+    /* Update currency prices */
     updatePrices();
 
-    document
-        .getElementById('noResults')
-        ?.classList.toggle(
-            'hidden',
-            list.length > 0
-        );
+    /* Show/hide no results message */
+    const noResults = document.getElementById('noResults');
+
+    if (noResults) {
+        noResults.classList.toggle('hidden', list.length > 0);
+    }
 }
 
-function setupShop() {
-    const params =
-        new URLSearchParams(location.search);
 
-    const category =
-        params.get('category');
+function setupShop() {
+    const params = new URLSearchParams(window.location.search);
+
+    const requestedCategory = params.get('category');
 
     const categoryFilter =
         document.getElementById('categoryFilter');
 
-    if (category && categoryFilter) {
-        categoryFilter.value = category;
+    /* Allow category links from other pages */
+    if (requestedCategory && categoryFilter) {
+        const validOption = Array.from(categoryFilter.options)
+            .some((option) => option.value === requestedCategory);
+
+        if (validOption) {
+            categoryFilter.value = requestedCategory;
+        }
     }
 
-    [
-        'productSearch',
-        'categoryFilter',
-        'sortProducts'
-    ].forEach((id) => {
+    /* Search */
+    const searchInput =
+        document.getElementById('productSearch');
 
-        const element =
-            document.getElementById(id);
+    if (searchInput) {
+        searchInput.addEventListener('input', renderShop);
+    }
 
-        if (element) {
+    /* Category filter */
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', renderShop);
+    }
 
-            const eventName =
-                id === 'productSearch'
-                    ? 'input'
-                    : 'change';
+    /* Sort */
+    const sortProducts =
+        document.getElementById('sortProducts');
 
-            element.addEventListener(
-                eventName,
-                renderShop
-            );
-        }
-    });
+    if (sortProducts) {
+        sortProducts.addEventListener('change', renderShop);
+    }
 
     renderShop();
 }
 
+
 function homeProducts() {
-    const grid =
-        document.getElementById('homeProducts');
+    const grid = document.getElementById('homeProducts');
 
     if (!grid) {
         return;
     }
 
-    grid.innerHTML =
-        products
-            .slice(0, 10)
-            .map(card)
-            .join('');
+    grid.innerHTML = products
+        .slice(0, 10)
+        .map(card)
+        .join('');
 
     attachCardEvents();
     updatePrices();
 }
 
+
 function featured() {
-    const box =
-        document.getElementById(
-            'featuredProduct'
-        );
+    const box = document.getElementById('featuredProduct');
 
     if (!box) {
         return;
     }
 
     const startOfYear =
-        new Date(
-            new Date().getFullYear(),
-            0,
-            0
-        );
+        new Date(new Date().getFullYear(), 0, 0);
 
     const dayOfYear =
         Math.floor(
-            (Date.now() - startOfYear) /
-            86400000
+            (Date.now() - startOfYear) / 86400000
         );
 
     const product =
-        products[
-            dayOfYear % products.length
-        ];
+        products[dayOfYear % products.length];
 
     box.innerHTML = `
         <article class="featured-card reveal visible">
@@ -150,7 +153,7 @@ function featured() {
             <img
                 src="${product.image}"
                 alt="${product.name}"
-            >
+                loading="lazy">
 
             <div>
 
@@ -172,8 +175,7 @@ function featured() {
 
                 <strong
                     class="featured-price"
-                    data-usd="${product.price}"
-                >
+                    data-usd="${product.price}">
                     ${money(product.price)}
                 </strong>
 
@@ -182,15 +184,13 @@ function featured() {
                     <button
                         class="btn btn-primary"
                         id="featuredAdd"
-                        type="button"
-                    >
+                        type="button">
                         🛒 Add to Cart
                     </button>
 
                     <a
                         class="btn btn-soft"
-                        href="product-details.html?id=${product.id}"
-                    >
+                        href="product-details.html?id=${product.id}">
                         View details
                     </a>
 
@@ -201,28 +201,21 @@ function featured() {
         </article>
     `;
 
-    const featuredButton =
-        document.getElementById(
-            'featuredAdd'
-        );
+    const featuredAdd =
+        document.getElementById('featuredAdd');
 
-    if (featuredButton) {
-        featuredButton.addEventListener(
-            'click',
-            () => {
-                addToCart(product.id);
-            }
-        );
+    if (featuredAdd) {
+        featuredAdd.addEventListener('click', () => {
+            addToCart(product.id);
+        });
     }
 
     updatePrices();
 }
 
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-        setupShop();
-        homeProducts();
-        featured();
-    }
-);
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupShop();
+    homeProducts();
+    featured();
+});
