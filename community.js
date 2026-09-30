@@ -1,65 +1,51 @@
 function setupFeedback() {
-    const form =
-        document.getElementById(
-            'feedbackForm'
-        );
+    const form = document.getElementById('feedbackForm');
 
     if (!form) {
         return;
     }
 
-    form.addEventListener(
-        'submit',
-        (event) => {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
 
-            event.preventDefault();
-
-            const details =
-                Object.fromEntries(
-                    new FormData(form)
-                );
-
-            const feedback =
-                readStore(
-                    'toyFeedback',
-                    []
-                );
-
-            feedback.push({
-                ...details,
-                date:
-                    new Date().toISOString()
-            });
-
-            writeStore(
-                'toyFeedback',
-                feedback
+        const details =
+            Object.fromEntries(
+                new FormData(form)
             );
 
-            form.reset();
+        const feedback =
+            readStore('toyFeedback', []);
 
-            showToast(
-                'Thank you for your feedback! We hope to make Toy Haven even better. 💛'
-            );
-        }
-    );
+        feedback.push({
+            ...details,
+            date: new Date().toISOString()
+        });
+
+        writeStore(
+            'toyFeedback',
+            feedback
+        );
+
+        form.reset();
+
+        showToast(
+            'Thank you for your feedback! We hope to make Toy Haven even better. 💛'
+        );
+    });
 }
 
+
 function renderForum() {
+
     const box =
-        document.getElementById(
-            'forumPosts'
-        );
+        document.getElementById('forumPosts');
 
     if (!box) {
         return;
     }
 
     const posts =
-        readStore(
-            'toyForum',
-            []
-        );
+        readStore('toyForum', []);
 
     if (!posts.length) {
 
@@ -80,8 +66,7 @@ function renderForum() {
 
                 <button
                     class="forum-like"
-                    type="button"
-                >
+                    type="button">
                     ▲ 8 Helpful
                 </button>
 
@@ -92,77 +77,75 @@ function renderForum() {
     }
 
     box.innerHTML =
-        posts
-            .map(
-                (post, index) => `
-                    <article class="forum-post">
+        posts.map(
+            (post, index) => `
 
-                        <p class="eyebrow">
-                            ${post.topic}
-                        </p>
+            <article class="forum-post">
 
-                        <h3>
-                            ${post.name}
-                        </h3>
+                <p class="eyebrow">
+                    ${post.topic}
+                </p>
 
-                        <p>
-                            ${post.text}
-                        </p>
+                <h3>
+                    ${post.name}
+                </h3>
 
-                        <button
-                            class="forum-like"
-                            type="button"
-                            data-like-post="${index}"
-                        >
-                            ▲ ${post.likes} Helpful
-                        </button>
+                <p>
+                    ${post.text}
+                </p>
 
-                        <div class="comment-list">
+                <button
+                    class="forum-like"
+                    data-like-post="${index}"
+                    type="button">
 
-                            ${(post.comments || [])
-                                .map(
-                                    (comment) => `
-                                        <p>
-                                            <strong>
-                                                ${comment.name}:
-                                            </strong>
-                                            ${comment.text}
-                                        </p>
-                                    `
-                                )
-                                .join('')}
+                    ▲ ${post.likes} Helpful
 
-                        </div>
+                </button>
 
-                        <form
-                            class="forum-comment"
-                            data-post="${index}"
-                        >
+                <div class="comment-list">
 
-                            <input
-                                name="comment"
-                                required
-                                placeholder="Add a friendly comment"
-                            >
+                    ${(post.comments || [])
+                        .map(
+                            (comment) => `
+                            <p>
+                                <strong>
+                                    ${comment.name}:
+                                </strong>
 
-                            <button
-                                class="btn btn-soft"
-                                type="submit"
-                            >
-                                Comment
-                            </button>
+                                ${comment.text}
+                            </p>
+                        `
+                        )
+                        .join('')}
 
-                        </form>
+                </div>
 
-                    </article>
-                `
-            )
-            .join('');
+                <form
+                    class="forum-comment"
+                    data-post="${index}">
+
+                    <input
+                        name="comment"
+                        required
+                        placeholder="Add a friendly comment">
+
+                    <button
+                        class="btn btn-soft"
+                        type="submit">
+                        Comment
+                    </button>
+
+                </form>
+
+            </article>
+
+        `
+        ).join('');
+
 
     box
-        .querySelectorAll(
-            '[data-like-post]'
-        )
+        .querySelectorAll('[data-like-post]')
         .forEach((button) => {
 
             button.addEventListener(
@@ -178,30 +161,30 @@ function renderForum() {
                     const post =
                         storedPosts[
                             Number(
-                                button.dataset
-                                    .likePost
+                                button.dataset.likePost
                             )
                         ];
 
-                    if (post) {
-
-                        post.likes += 1;
-
-                        writeStore(
-                            'toyForum',
-                            storedPosts
-                        );
-
-                        renderForum();
+                    if (!post) {
+                        return;
                     }
+
+                    post.likes =
+                        Number(post.likes || 0) + 1;
+
+                    writeStore(
+                        'toyForum',
+                        storedPosts
+                    );
+
+                    renderForum();
                 }
             );
         });
 
+
     box
-        .querySelectorAll(
-            '.forum-comment'
-        )
+        .querySelectorAll('.forum-comment')
         .forEach((form) => {
 
             form.addEventListener(
@@ -237,8 +220,7 @@ function renderForum() {
 
                     post.comments.push({
                         name: 'Visitor',
-                        text:
-                            details.comment
+                        text: details.comment
                     });
 
                     writeStore(
@@ -255,14 +237,16 @@ function renderForum() {
                     );
                 }
             );
+
         });
+
 }
 
+
 function setupForum() {
+
     const form =
-        document.getElementById(
-            'postForm'
-        );
+        document.getElementById('postForm');
 
     if (!form) {
         return;
@@ -308,6 +292,7 @@ function setupForum() {
         }
     );
 }
+
 
 document.addEventListener(
     'DOMContentLoaded',
